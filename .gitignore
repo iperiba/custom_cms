@@ -1,0 +1,22 @@
+.idea/
+mutagen.yml.lock
+
+###> symfony/framework-bundle ###
+symfony_crud/.env.local
+symfony_crud/.env.local.php
+symfony_crud/.env.*.local
+symfony_crud/config/secrets/prod/prod.decrypt.private.php
+symfony_crud/public/bundles/
+symfony_crud/var/
+symfony_crud/vendor/
+###< symfony/framework-bundle ###
+
+###> phpunit/phpunit ###
+symfony_crud/phpunit.xml
+symfony_crud.phpunit.result.cache
+###< phpunit/phpunit ###
+
+###> symfony/phpunit-bridge ###
+symfony_crud.phpunit.result.cache
+symfony_crud/phpunit.xml
+###< symfony/phpunit-bridge ###
