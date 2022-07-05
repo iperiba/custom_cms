@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Controller\Admin\CrudController\ArticleCrudController\ArticleCrudController;
+use App\Controller\Admin\CrudController\ArticleCrudController;
 use App\Entity\Article;
 use App\Entity\Category;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin\CrudController\ArticleCrudController;
+namespace App\Controller\Admin\CrudController;
 
 use App\Entity\Article;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
