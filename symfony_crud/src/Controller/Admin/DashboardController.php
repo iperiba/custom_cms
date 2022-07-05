@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
-    #[Route('/admin', name: 'admin')]
+    #[Route('/admin', name: 'admin', priority: 2)]
     public function index(): Response
     {
         $routeBuilder = $this->container->get(AdminUrlGenerator::class);
@@ -30,7 +30,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'index');
+        yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'app_article_index');
         yield MenuItem::linkToCrud('Articles', 'fas fa-map-marker-alt', Article::class);
         yield MenuItem::linkToCrud('Categories', 'fas fa-comments', Category::class);
     }
