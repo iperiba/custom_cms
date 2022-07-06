@@ -4,7 +4,12 @@ namespace App\Repository;
 
 use App\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Exception;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\Object_;
+use Psr\Log\LoggerInterface;
 
 /**
  * @extends ServiceEntityRepository<Article>
@@ -39,28 +44,22 @@ class ArticleRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Article[] Returns an array of Article objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function getArticleBySlugAndCategory(string $slug, string $category): ?Article
+    {
+        $conn = $this->getEntityManager()->getConnection();
+        $sql = 'SELECT a.id
+            FROM article a
+            INNER JOIN article_category ac
+            ON a.id = ac.article_id
+            INNER JOIN category c
+            ON c.id = ac.category_id 
+            WHERE c.slug  = :category
+            AND a.slug = :slug';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['category' => $category, 'slug' => $slug]);
+        $id = $resultSet->fetchOne();
+        $Article = $this->findOneBy(['id' => $id]);
 
-//    public function findOneBySomeField($value): ?Article
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return $Article;
+    }
 }

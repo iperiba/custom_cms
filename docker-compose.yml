@@ -47,6 +47,12 @@ services:
 #      PHP_XDEBUG_CLIENT_HOST: 172.17.0.1 # Linux
 #      PHP_XDEBUG_CLIENT_HOST: host.docker.internal # Docker 18.03+ Mac/Win
 #      PHP_XDEBUG_CLIENT_HOST: 10.0.75.1 # Windows
+      PHP_XDEBUG: 1
+      PHP_XDEBUG_MODE: debug
+      PHP_IDE_CONFIG: serverName=phpstorm
+      PHP_XDEBUG_IDEKEY: "phpstorm"
+      PHP_XDEBUG_START_WITH_REQUEST: 1
+      PHP_XDEBUG_CLIENT_HOST: 172.17.0.1 # Linux
     volumes:
     - ./:/var/www/html:cached
 ## Alternative for macOS users: Mutagen https://wodby.com/docs/stacks/php/local#docker-for-mac

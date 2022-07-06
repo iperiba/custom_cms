@@ -16,7 +16,6 @@ class LoginController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('@EasyAdmin/page/login.html.twig', [
-            // parameters usually defined in Symfony login forms
             'error' => $error,
             'last_username' => $lastUsername,
             'translation_domain' => 'admin',
@@ -29,7 +28,5 @@ class LoginController extends AbstractController
     #[Route('/logout', name: 'app_logout', methods: ['GET'], priority: 2)]
     public function logout(): void
     {
-        // controller can be blank: it will never be called!
-        throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
 }
