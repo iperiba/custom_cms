@@ -31,7 +31,8 @@
                     {% endfor %}
                 </td>
                 <td>
-                    <p></p>{{ article.content|length > 50 ? article.content|slice(0, 50) ~ '...' : article.content }}</p>
+                    <p>{{ article.content|length > 50 ? article.content|slice(0, 50) ~ '...' : article.content }}</p>
+                </td>
                 <td>
                     </p>
                         <a href="{{ path('app_common_show', {'slug': article.slug}) }}">show</a>
