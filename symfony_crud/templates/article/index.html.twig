@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+    <h1>LIST OF ARTICLES</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Categories</th>
+                <th>Content</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>
+                    <p>{{ article.title }}</p>
+                </td>
+                <td>
+                    <p>{{ article.slug }}<p>
+                <td>
+                    {% for category in article.categories %}
+                    <p>
+                        <a href="{{ path('app_common_show', {'slug': category.slug}) }}" title="{{ category.name }}">{{ category.name }}</a>
+                    </p>
+                    {% endfor %}
+                </td>
+                <td>
+                    <p>{{ article.content|length > 50 ? article.content|slice(0, 50) ~ '...' : article.content }}</p>
+                </td>
+                <td>
+                    </p>
+                        <a href="{{ path('app_common_show', {'slug': article.slug}) }}">show</a>
+                    </p>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

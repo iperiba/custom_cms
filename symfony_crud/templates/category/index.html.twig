@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+    <h1>LIST OF CATEGORIES</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>
+                    <p>{{ category.name }}</p>
+                </td>
+                <td>
+                    <p>{{ category.slug }}</p>
+                </td>
+                <td>
+                    <p>
+                        <a href="{{ path('app_common_show', {'slug': category.slug}) }}">show</a>
+                    </p>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+    <h4>Article</h4>
+    <h1>{{ article.title }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Slug</th>
+                <td>
+                    <p>{{ article.slug }}</p>
+                </td>
+            </tr>
+            <tr>
+                <th>Categories</th>
+                <td>
+                    {% for category in article.categories %}
+                        <p>
+                            <a href="{{ path('app_common_show', {'slug': category.slug}) }}" title="{{ category }}">
+                                {{ category.name }}
+                            </a>
+                        </p>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>
+                    <p>{{ article.content }}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
